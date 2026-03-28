@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent OS Dashboard</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%231d6b57'/%3E%3Cpath d='M18 38V26h6.2l5.5 6.8L35.2 26H41v12h-4.7v-5.8l-6.1 7.2-6-7.2V38z' fill='white'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand-card">
+          <p class="eyebrow">Agent OS</p>
+          <h1>Launch the team that gets your first 100 customers.</h1>
+          <p class="muted">
+            Create agents, assign skills and tools, then chat with them from one
+            command center.
+          </p>
+        </div>
+
+        <section class="panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Create Agent</p>
+              <h2>New teammate</h2>
+            </div>
+          </div>
+
+          <form id="agent-form" class="agent-form">
+            <label>
+              Agent name
+              <input id="agent-name" name="name" placeholder="Ava Growth" required />
+            </label>
+
+            <label>
+              Role
+              <input
+                id="agent-role"
+                name="role"
+                placeholder="Growth Hacker"
+                required
+              />
+            </label>
+
+            <label>
+              Team
+              <select id="agent-team" name="team">
+                <option>Hackers</option>
+                <option>Engineering</option>
+                <option>Marketing</option>
+                <option>CEO Office</option>
+                <option>Tooling Engineer</option>
+              </select>
+            </label>
+
+            <label>
+              Skills
+              <input
+                id="agent-skills"
+                name="skills"
+                placeholder="landing pages, pricing, copywriting"
+              />
+            </label>
+
+            <label>
+              Tools
+              <input
+                id="agent-tools"
+                name="tools"
+                placeholder="Slack, Gmail, Calendar"
+              />
+            </label>
+
+            <label>
+              Goal
+              <textarea
+                id="agent-goal"
+                name="goal"
+                rows="4"
+                placeholder="Own conversion experiments and weekly pricing updates."
+              ></textarea>
+            </label>
+
+            <button type="submit" class="primary-button">Create agent</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Agent Roster</p>
+              <h2>Your team</h2>
+            </div>
+            <span id="agent-count" class="pill">0 agents</span>
+          </div>
+          <div id="agent-list" class="agent-list" aria-live="polite"></div>
+        </section>
+      </aside>
+
+      <main class="main">
+        <section class="hero panel">
+          <div>
+            <p class="eyebrow">Workspace</p>
+            <h2>Chat with your agents</h2>
+            <p class="muted">
+              Pick an agent, inspect their skills and tools, and coordinate the
+              next move.
+            </p>
+          </div>
+          <div class="hero-metrics">
+            <div>
+              <span class="metric-label">Selected team</span>
+              <strong id="selected-team">Hackers</strong>
+            </div>
+            <div>
+              <span class="metric-label">Available tools</span>
+              <strong id="selected-tools-count">0</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace-grid">
+          <div class="panel selected-agent-panel">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Selected Agent</p>
+                <h2 id="selected-agent-name">No agent selected</h2>
+              </div>
+            </div>
+
+            <div id="selected-agent-empty" class="empty-state">
+              Create an agent from the left to start chatting.
+            </div>
+
+            <div id="selected-agent-card" class="selected-agent-card hidden">
+              <p class="agent-role" id="selected-agent-role"></p>
+              <p class="agent-goal" id="selected-agent-goal"></p>
+
+              <div class="token-groups">
+                <div>
+                  <span class="token-label">Skills</span>
+                  <div id="selected-agent-skills" class="token-list"></div>
+                </div>
+                <div>
+                  <span class="token-label">Tools</span>
+                  <div id="selected-agent-tools" class="token-list"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel chat-panel">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Live Chat</p>
+                <h2>Conversation</h2>
+              </div>
+            </div>
+
+            <div id="chat-empty" class="empty-state">
+              Select an agent to start a conversation.
+            </div>
+
+            <div id="chat-thread" class="chat-thread hidden" aria-live="polite"></div>
+
+            <form id="chat-form" class="chat-form">
+              <textarea
+                id="chat-input"
+                placeholder="Ask the agent to work on landing page ideas, pricing, or product improvements..."
+                rows="3"
+              ></textarea>
+              <button type="submit" class="primary-button">Send</button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

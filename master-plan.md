@@ -11,6 +11,9 @@ Build a multi-tenant, responsive PWA for running an AI-powered organization acro
   Vendor access should be policy-driven, auditable, and limited by role and resource assignment.
 - Add an explicit tool-runtime layer for agents:
   Agents should be able to use external tools like Slack, WhatsApp, Gmail, Calendar, and similar SaaS systems through managed connectors, permissions, and execution logs.
+- Add an explicit organization-wide "Intelligence & Memory" layer:
+  Every interaction, lead update, tool execution, and customer feedback record must be vectorized and stored in a Vector Database (Long-term Memory).
+  Agents should operate using a RAG (Retrieval-Augmented Generation) loop, allowing them to "learn" and "recall" any historical data across the entire organization boundary.
 - Add a built-in `Tooling Engineer` capability:
   If an agent gets blocked because a needed tool does not exist, the system should route to a tooling engineer workflow that:
   checks existing internal tools/connectors first,
@@ -45,6 +48,8 @@ Build a multi-tenant, responsive PWA for running an AI-powered organization acro
   Runnable worker with role, manager, skills, provider/runtime config, budgets, allowed tools, blocked-state handling, and template source.
 - `SkillReference`
   Skill metadata imported/referenced from `skills.sh`, with source, install/import state, and compatibility info.
+- `VectorMemoryStore`
+  Central RAG hub using Qdrant/ChromaDB for storing organization-wide context (Docs, Chats, Logs, Customer Data).
 - `ToolConnection`
   External integration record for Slack, WhatsApp, Gmail, Calendar, and similar systems, including auth mode, scopes, status, and owning org.
 - `ToolCapability`
@@ -53,6 +58,12 @@ Build a multi-tenant, responsive PWA for running an AI-powered organization acro
   Auditable record of agent tool use, including requested action, permission context, outcome, retries, and failure reason.
 - `ToolDiscoveryJob`
   Workflow record for resolving missing tooling by checking internal tools, searching external sources, or creating a new tool.
+- `EmbeddingEvent`
+  A single vectorized record of any change in the system (a "memory" chunk) ready for agent retrieval.
+- `IntelligenceSilo`
+  Logical partitioning of the VectorMemoryStore. Financial data is strictly isolated (`is_financial: true`) and only accessible by admin personas or during explicitly authorized finance workflows.
+- `ConflictResolutionLog`
+  A dashboard surface for human-in-the-loop intervention when an agent detects contradictory organization memories (e.g., conflicting deadlines from Slack vs. Email).
 - `Asset`
   Generated or uploaded company artifact such as landing page, campaign copy, doc, brief, pricing experiment, or report.
 - `Campaign`

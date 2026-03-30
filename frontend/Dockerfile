@@ -1,6 +1,7 @@
 FROM node:18-alpine
 WORKDIR /app
-COPY package*.json ./
+# Explicitly copy from the current directory (which is ./frontend)
+COPY package.json package-lock.json* ./
 RUN npm install
 COPY . .
 RUN npx prisma generate

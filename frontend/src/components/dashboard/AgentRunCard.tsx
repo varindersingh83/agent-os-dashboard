@@ -1,7 +1,4 @@
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 
 interface AgentRunProps {
   id: string;
@@ -21,14 +18,19 @@ export const AgentRunCard: React.FC<AgentRunProps> = ({ id, agentName, status, c
   };
 
   return (
-    <Card className={`w-full max-w-md border-2 ${isFinancial ? 'border-amber-400 shadow-amber-50' : 'border-slate-200'}`}>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium">
-          {agentName} {isFinancial && <Badge variant="outline" className="ml-2 text-amber-600 border-amber-600">Financial Silo</Badge>}
-        </CardTitle>
-        <Badge className={statusColors[status]}>{status}</Badge>
-      </CardHeader>
-      <CardContent>
+    <section className={`w-full max-w-md rounded-xl border-2 bg-white p-6 shadow-sm ${isFinancial ? 'border-amber-400 shadow-amber-50' : 'border-slate-200'}`}>
+      <div className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <h3 className="text-sm font-medium text-slate-900">
+          {agentName}
+          {isFinancial && (
+            <span className="ml-2 rounded-full border border-amber-600 px-2 py-0.5 text-xs text-amber-600">
+              Financial Silo
+            </span>
+          )}
+        </h3>
+        <span className={`rounded-full px-2 py-1 text-xs font-semibold ${statusColors[status]}`}>{status}</span>
+      </div>
+      <div>
         <div className="text-xs text-muted-foreground mb-4">Run ID: {id}</div>
         {currentTool && (
           <div className="flex items-center space-x-2 bg-slate-50 p-2 rounded border border-slate-100 mb-4">
@@ -39,13 +41,17 @@ export const AgentRunCard: React.FC<AgentRunProps> = ({ id, agentName, status, c
         <div className="max-h-32 overflow-y-auto text-sm bg-slate-900 text-blue-300 p-3 rounded font-mono leading-relaxed">
           {thoughtStream || "// Waiting for agent prompt..."}
         </div>
-      </CardContent>
-      <CardFooter className="flex justify-between border-t mt-4 pt-4">
-        <Button variant="outline" size="sm">Log Detail</Button>
+      </div>
+      <div className="flex justify-between border-t mt-4 pt-4">
+        <button type="button" className="rounded-md border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50">
+          Log Detail
+        </button>
         {status === 'BLOCKED' && (
-          <Button variant="destructive" size="sm">Resume Agent</Button>
+          <button type="button" className="rounded-md bg-red-600 px-3 py-1.5 text-sm text-white hover:bg-red-500">
+            Resume Agent
+          </button>
         )}
-      </CardFooter>
-    </Card>
+      </div>
+    </section>
   );
 };

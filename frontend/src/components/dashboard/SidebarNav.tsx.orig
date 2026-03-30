@@ -6,7 +6,6 @@ const navItems = [
   { name: 'Overview', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Council Table', href: '/dashboard/council', icon: Users },
   { name: 'Assets Gallery', href: '/dashboard/assets', icon: Box },
-  { name: 'Leads & CRM', href: '/dashboard/leads', icon: Users },
   { name: 'CEO Dash', href: '/dashboard/ceo', icon: TrendingUp },
 ];
 

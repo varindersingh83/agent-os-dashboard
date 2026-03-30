@@ -1,8 +1,8 @@
 FROM node:18-alpine
 WORKDIR /app
-# Explicitly copy from the current directory (which is ./frontend)
 COPY package.json package-lock.json* ./
-RUN npm install
+# Use --legacy-peer-deps to handle NextAuth/Next.js 14 version mismatch
+RUN npm install --legacy-peer-deps
 COPY . .
 RUN npx prisma generate
 EXPOSE 3000

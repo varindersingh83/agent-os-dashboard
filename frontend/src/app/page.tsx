@@ -1,7 +1,8 @@
+"use client";
 import React from 'react';
 import Link from 'next/link';
 
-export default function HomePage() {
+const HomePage = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white p-4 text-center">
       <div className="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mb-8 shadow-2xl">
@@ -17,13 +18,13 @@ export default function HomePage() {
       <div className="flex gap-4">
         <Link 
           href="/auth/signin" 
-          className="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-bold transition-all"
+          className="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-bold transition-all text-white no-underline"
         >
           Enter Council Room
         </Link>
         <Link 
           href="/dashboard" 
-          className="px-8 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg font-bold transition-all text-slate-300"
+          className="px-8 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg font-bold transition-all text-slate-300 no-underline"
         >
           View Dashboard
         </Link>
@@ -45,4 +46,6 @@ export default function HomePage() {
       </div>
     </div>
   );
-}
+};
+
+export default HomePage;

@@ -46,7 +46,17 @@ async def websocket_endpoint(websocket: WebSocket, agent_id: str):
         while True:
             # Keep connection alive; can also receive user-to-agent manual overrides here
             data = await websocket.receive_text()
-            # Handle manual human override data or chat
+            message = json.loads(data)
+            
+            # Handle Human-in-the-Loop Override
+            if message.get("type") == "RESUME_MISSION":
+                # 1. Update the Run Status to ACTIVE in DB (Logic placeholder)
+                # 2. Re-inject credentials/content into the Agent Loop
+                await manager.broadcast_thought(agent_id, {
+                    "type": "SYSTEM_NOTIFICATION",
+                    "content": f"Human Override Received: Resuming mission for agent {agent_id}...",
+                    "status": "ACTIVE"
+                })
     except WebSocketDisconnect:
         manager.disconnect(websocket, agent_id)
 

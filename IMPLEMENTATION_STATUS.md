@@ -21,5 +21,16 @@
 
 ## 4. Current Repository State
 - **Branch:** `main`
-- **Latest Commit:** `cb09ecc` (feat: Custom SignIn UI with Multi-Provider Support)
-- **Next Action:** Finalize Prisma Schema and launch the FastAPI backend.
+- **Latest Commit:** `3f47a1f` (docs: Add IMPLEMENTATION_STATUS.md)
+- **Implemented:**
+  - Next.js 14 / NextAuth (Google, Apple, FB, Creds) setup.
+  - Prisma Schema for Orgs, Users, Vendors, Leads, Assets, and Agents.
+  - FastAPI Boilerplate with Qdrant Memory Manager.
+  - Initial Agent Run UI Widget with Financial Silo styling.
+
+## 5. Technical Backlog & Constraints (Next)
+- **Real-Time Data Sync:** Currently, Agent thought-streams are static. Need a WebSocket or Server-Sent Events (SSE) transition.
+- **Visual Visualization:** The "Hub-and-Spoke" diagram for the Council requires a robust React diagramming library (like React Flow) to handle dynamic organization growth.
+- **Provider API Keys:** Need to store and rotate credentials for Google (Gmail/Calendar), Slack, and WhatsApp to enable the "Passive Learning" connectors.
+- **Autonomous RAG Loops:** The LiteLLM orchestration needs to move from a single API call to a multi-step loop with tool-rejection/retry logic.
+- **Human-in-the-Loop Hooks:** Mechanisms for an agent to "pause" and request specific credentials or tool-access confirmation from the user dashboard.

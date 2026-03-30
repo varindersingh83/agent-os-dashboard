@@ -6,8 +6,7 @@ An intelligent operating system for AI-driven organizations. Unlike traditional 
 ## 2. Technical Stack
 - **Frontend**: Desktop-optimized React/Next.js (PWA).
 - **Backend**: FastAPI (Python) using LiteLLM + Pydantic.
-- **Database (Relational)**: PostgreSQL (via Medusa-style primitives).
-- **Database (Vector)**: Qdrant (Rust-based) for high-performance retrieval.
+- **Authentication**: Multi-provider support using NextAuth.js (Google, Apple, Facebook, and Email/Password Credentials for testing).
 
 ## 3. Core Modules & Data Structure
 

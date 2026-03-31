@@ -10,11 +10,11 @@ export default function SignInPage() {
 
   const handleCredentialsSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    await signIn("credentials", { email, password, callbackUrl: "/" });
+    await signIn("credentials", { email, password, callbackUrl: "/dashboard" });
   };
 
   const socialSignIn = (provider: string) => {
-    signIn(provider, { callbackUrl: "/" });
+    signIn(provider, { callbackUrl: "/dashboard" });
   };
 
   return (
@@ -22,7 +22,7 @@ export default function SignInPage() {
       <div className="w-full max-w-sm space-y-8 bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800 backdrop-blur-sm">
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold tracking-tight">Agent OS</h1>
-          <p className="text-zinc-400">Welcome to the Council Room</p>
+          <p className="text-zinc-400">Welcome to the operating system</p>
         </div>
 
         <div className="grid grid-cols-3 gap-3">

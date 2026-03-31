@@ -8,16 +8,21 @@ datasource db {
 }
 
 model Organization {
-  id          String   @id @default(cuid())
-  name        String
-  slug        String   @unique
-  members     User[]
-  vendors     VendorUser[]
-  teams       Team[]
-  leads       Lead[]
-  assets      Asset[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id               String         @id @default(cuid())
+  name             String
+  slug             String         @unique
+  description      String?        @db.Text
+  setupCompletedAt DateTime?
+  members          User[]
+  vendors          VendorUser[]
+  teams            Team[]
+  leads            Lead[]
+  assets           Asset[]
+  agents           Agent[]
+  tasks            Task[]
+  conversations    Conversation[]
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
 }
 
 enum Role {
@@ -66,16 +71,30 @@ model Team {
 }
 
 model Agent {
-  id             String         @id @default(cuid())
-  name           String
-  role           String
-  persona        String?        @db.Text
-  teamId         String
-  team           Team           @relation(fields: [teamId], references: [id])
-  isFinancial    Boolean        @default(false)
-  runs           AgentRun[]
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
+  id               String         @id @default(cuid())
+  name             String
+  role             String
+  goal             String?        @db.Text
+  persona          String?        @db.Text
+  organizationId   String
+  organization     Organization   @relation(fields: [organizationId], references: [id])
+  teamId           String?
+  team             Team?          @relation(fields: [teamId], references: [id])
+  parentAgentId    String?
+  parentAgent      Agent?         @relation("AgentHierarchy", fields: [parentAgentId], references: [id])
+  childAgents      Agent[]        @relation("AgentHierarchy")
+  createdByUserId  String?
+  createdByAgentId String?
+  createdByType    String?        @default("USER")
+  status           String         @default("ONLINE")
+  isRoot           Boolean        @default(false)
+  isFinancial      Boolean        @default(false)
+  runs             AgentRun[]
+  tasks            Task[]
+  conversations    Conversation[]
+  logEvents        AgentLogEvent[]
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
 }
 
 model AgentRun {
@@ -97,6 +116,73 @@ enum RunStatus {
   BLOCKED
   COMPLETED
   FAILED
+}
+
+model Task {
+  id             String      @id @default(cuid())
+  title          String
+  status         TaskStatus  @default(QUEUED)
+  priority       TaskPriority @default(MEDIUM)
+  summary        String?     @db.Text
+  assignedAgentId String
+  assignedAgent  Agent       @relation(fields: [assignedAgentId], references: [id])
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  startedAt      DateTime?
+  completedAt    DateTime?
+  tokenCost      Int         @default(0)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+}
+
+enum TaskStatus {
+  QUEUED
+  ACTIVE
+  BLOCKED
+  COMPLETED
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model Conversation {
+  id             String       @id @default(cuid())
+  title          String
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  agentId        String
+  agent          Agent        @relation(fields: [agentId], references: [id])
+  messages       Message[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model Message {
+  id             String        @id @default(cuid())
+  conversationId String
+  conversation   Conversation  @relation(fields: [conversationId], references: [id])
+  agentId        String
+  role           MessageRole
+  content        String        @db.Text
+  createdAt      DateTime      @default(now())
+}
+
+enum MessageRole {
+  user
+  assistant
+  system
+}
+
+model AgentLogEvent {
+  id        String   @id @default(cuid())
+  agentId   String
+  agent     Agent    @relation(fields: [agentId], references: [id])
+  type      String
+  message   String   @db.Text
+  createdAt DateTime @default(now())
 }
 
 model Lead {

@@ -1,0 +1,219 @@
+{
+  "organization": {
+    "id": "org_4ino4sbx",
+    "name": "Northstar Labs",
+    "description": "We build an AI operating system that helps founders launch, manage, and monitor autonomous specialist agents focused on profitability.",
+    "setupCompletedAt": "2026-03-31T06:27:19.433Z"
+  },
+  "agents": [
+    {
+      "id": "agent_is4on7eq",
+      "name": "CEO",
+      "role": "Founder / Chief Executive Officer",
+      "goal": "Own company direction, capital efficiency, and agent coordination.",
+      "status": "ONLINE",
+      "parentAgentId": null,
+      "isRoot": true,
+      "templateKey": "ceo",
+      "createdByType": "USER",
+      "createdById": null
+    },
+    {
+      "id": "agent_3ooahfgd",
+      "name": "Research",
+      "role": "Research Agent",
+      "goal": "Find market signals, user pain, and competitor moves worth acting on.",
+      "status": "FOCUSED",
+      "parentAgentId": "agent_is4on7eq",
+      "isRoot": false,
+      "templateKey": "research",
+      "createdByType": "USER",
+      "createdById": "agent_is4on7eq"
+    },
+    {
+      "id": "agent_m5jpssjz",
+      "name": "Market Analysis",
+      "role": "Market Analyst",
+      "goal": "Pressure-test positioning, monetization, and profitable growth paths.",
+      "status": "ONLINE",
+      "parentAgentId": "agent_is4on7eq",
+      "isRoot": false,
+      "templateKey": "market-analysis",
+      "createdByType": "USER",
+      "createdById": "agent_is4on7eq"
+    },
+    {
+      "id": "agent_zzpxvvp5",
+      "name": "Engineer / Builder",
+      "role": "Product Engineer",
+      "goal": "Ship the fastest product improvements that unlock customer value.",
+      "status": "FOCUSED",
+      "parentAgentId": "agent_is4on7eq",
+      "isRoot": false,
+      "templateKey": "builder",
+      "createdByType": "USER",
+      "createdById": "agent_is4on7eq"
+    },
+    {
+      "id": "agent_e9jk9ldn",
+      "name": "Growth Hacker",
+      "role": "Growth Operator",
+      "goal": "Drive acquisition, activation, and conversion with measurable experiments.",
+      "status": "ONLINE",
+      "parentAgentId": "agent_is4on7eq",
+      "isRoot": false,
+      "templateKey": "growth",
+      "createdByType": "USER",
+      "createdById": "agent_is4on7eq"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task_xw3vh97u",
+      "title": "Define first profitable customer segment",
+      "status": "ACTIVE",
+      "priority": "HIGH",
+      "assignedAgentId": "agent_m5jpssjz",
+      "summary": "Narrow the fastest market wedge and explain why it can convert quickly.",
+      "startedAt": "2026-03-31T06:27:19.433Z",
+      "completedAt": null,
+      "tokenCost": 92
+    },
+    {
+      "id": "task_6dknxkow",
+      "title": "Interview current product assumptions",
+      "status": "QUEUED",
+      "priority": "MEDIUM",
+      "assignedAgentId": "agent_3ooahfgd",
+      "summary": "Collect evidence around pains, alternatives, and willingness to pay.",
+      "startedAt": null,
+      "completedAt": null,
+      "tokenCost": 44
+    },
+    {
+      "id": "task_0m60dct8",
+      "title": "Ship onboarding workflow foundation",
+      "status": "ACTIVE",
+      "priority": "HIGH",
+      "assignedAgentId": "agent_zzpxvvp5",
+      "summary": "Build the base app flow needed to turn sign-in into organization setup.",
+      "startedAt": "2026-03-31T06:27:19.433Z",
+      "completedAt": null,
+      "tokenCost": 113
+    },
+    {
+      "id": "task_921rvlno",
+      "title": "Draft first growth loop",
+      "status": "BLOCKED",
+      "priority": "MEDIUM",
+      "assignedAgentId": "agent_e9jk9ldn",
+      "summary": "Need sharper positioning before scaling outbound or paid experiments.",
+      "startedAt": "2026-03-31T06:27:19.433Z",
+      "completedAt": null,
+      "tokenCost": 57
+    },
+    {
+      "id": "task_yzbn4wli",
+      "title": "Coordinate starter agent system",
+      "status": "COMPLETED",
+      "priority": "HIGH",
+      "assignedAgentId": "agent_is4on7eq",
+      "summary": "Created the first specialist team and assigned the opening workstreams.",
+      "startedAt": "2026-03-31T03:27:19.433Z",
+      "completedAt": "2026-03-31T05:52:19.433Z",
+      "tokenCost": 88
+    }
+  ],
+  "conversations": [
+    {
+      "id": "conv_dx2i0rz3",
+      "agentId": "agent_is4on7eq",
+      "title": "CEO Strategy Thread"
+    },
+    {
+      "id": "conv_ue6cyp4z",
+      "agentId": "agent_3ooahfgd",
+      "title": "Research Command Thread"
+    },
+    {
+      "id": "conv_43yqtdj9",
+      "agentId": "agent_m5jpssjz",
+      "title": "Market Analysis Thread"
+    },
+    {
+      "id": "conv_yjxdx6z3",
+      "agentId": "agent_zzpxvvp5",
+      "title": "Builder Thread"
+    },
+    {
+      "id": "conv_31pdctsp",
+      "agentId": "agent_e9jk9ldn",
+      "title": "Growth Thread"
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg_twlodu4b",
+      "conversationId": "conv_dx2i0rz3",
+      "agentId": "agent_is4on7eq",
+      "role": "assistant",
+      "content": "I’m online and tracking Northstar Labs. My current charter is: Own company direction, capital efficiency, and agent coordination.",
+      "createdAt": "2026-03-31T06:27:19.433Z"
+    },
+    {
+      "id": "msg_99mdckxe",
+      "conversationId": "conv_ue6cyp4z",
+      "agentId": "agent_3ooahfgd",
+      "role": "assistant",
+      "content": "I’m online and tracking Northstar Labs. My current charter is: Find market signals, user pain, and competitor moves worth acting on.",
+      "createdAt": "2026-03-31T06:27:19.433Z"
+    },
+    {
+      "id": "msg_x2phzobl",
+      "conversationId": "conv_43yqtdj9",
+      "agentId": "agent_m5jpssjz",
+      "role": "assistant",
+      "content": "I’m online and tracking Northstar Labs. My current charter is: Pressure-test positioning, monetization, and profitable growth paths.",
+      "createdAt": "2026-03-31T06:27:19.433Z"
+    },
+    {
+      "id": "msg_l433vy2o",
+      "conversationId": "conv_yjxdx6z3",
+      "agentId": "agent_zzpxvvp5",
+      "role": "assistant",
+      "content": "I’m online and tracking Northstar Labs. My current charter is: Ship the fastest product improvements that unlock customer value.",
+      "createdAt": "2026-03-31T06:27:19.433Z"
+    },
+    {
+      "id": "msg_cxgisz7i",
+      "conversationId": "conv_31pdctsp",
+      "agentId": "agent_e9jk9ldn",
+      "role": "assistant",
+      "content": "I’m online and tracking Northstar Labs. My current charter is: Drive acquisition, activation, and conversion with measurable experiments.",
+      "createdAt": "2026-03-31T06:27:19.433Z"
+    }
+  ],
+  "logs": [
+    {
+      "id": "log_xikap2gc",
+      "agentId": "agent_is4on7eq",
+      "type": "SYSTEM",
+      "message": "Initialized starter team for Northstar Labs.",
+      "createdAt": "2026-03-31T06:27:19.433Z"
+    },
+    {
+      "id": "log_pzht1s8m",
+      "agentId": "agent_m5jpssjz",
+      "type": "TASK",
+      "message": "Began pricing and market wedge assessment.",
+      "createdAt": "2026-03-31T06:27:19.433Z"
+    },
+    {
+      "id": "log_hcq9tk9z",
+      "agentId": "agent_zzpxvvp5",
+      "type": "TASK",
+      "message": "Started building the base operating workflow.",
+      "createdAt": "2026-03-31T06:27:19.433Z"
+    }
+  ]
+}

@@ -3,14 +3,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Box, Briefcase, ChevronRight, LayoutDashboard, Sparkles, TrendingUp, Users } from 'lucide-react';
+import { Bot, ChevronRight, LayoutDashboard, Sparkles } from 'lucide-react';
 
 const navItems = [
   { name: 'Overview', href: '/dashboard', icon: LayoutDashboard },
-  { name: 'Council Table', href: '/dashboard/council', icon: Users },
-  { name: 'Assets Gallery', href: '/dashboard/assets', icon: Box },
-  { name: 'Leads & CRM', href: '/dashboard/leads', icon: Briefcase },
-  { name: 'CEO Dash', href: '/dashboard/ceo', icon: TrendingUp },
+  { name: 'Agents', href: '/dashboard/agents', icon: Bot },
 ];
 
 export const SidebarNav = () => {
@@ -76,10 +73,10 @@ export const SidebarNav = () => {
       </div>
 
       <div className="mt-auto rounded-[24px] border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-violet-50 p-5 shadow-soft">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-indigo-500">Theme</p>
-        <h3 className="mt-2 text-lg font-bold tracking-tight text-slate-950">Corporate Trust</h3>
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-indigo-500">Focus</p>
+        <h3 className="mt-2 text-lg font-bold tracking-tight text-slate-950">Minimum Agent OS</h3>
         <p className="mt-2 text-sm leading-6 text-slate-600">
-          Warm enterprise surfaces, indigo-violet gradients, and clearer wayfinding now anchor the dashboard.
+          Company setup, agent management, chat, and task visibility now anchor the product.
         </p>
       </div>
     </div>

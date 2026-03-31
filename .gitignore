@@ -42,6 +42,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .npm/
+.playwright-cli/
+output/
 
 # OS metadata
 .DS_Store

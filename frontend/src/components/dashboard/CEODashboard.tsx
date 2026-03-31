@@ -1,6 +1,4 @@
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { TrendingUp, Activity, DollarSign, Target, CheckCircle2 } from 'lucide-react';
 
 const pulseMetrics = [
@@ -11,73 +9,69 @@ const pulseMetrics = [
 
 export const CEODashboard = () => {
   return (
-    <div className="p-6 space-y-8">
-      {/* 1. The TL;DR Header */}
-      <section className="bg-slate-900 text-slate-50 p-6 rounded-2xl shadow-xl border-l-4 border-blue-500">
-        <div className="flex items-center space-x-2 mb-3">
-          <Activity className="w-5 h-5 text-blue-400" />
-          <h2 className="text-sm font-bold uppercase tracking-wider text-blue-400">Company Pulse / TL;DR</h2>
+    <div className="space-y-8 p-6 sm:p-8 lg:p-10">
+      <section className="relative overflow-hidden rounded-[28px] bg-slate-950 p-6 text-slate-50 shadow-lift sm:p-8">
+        <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-indigo-400/20 blur-3xl" />
+        <div className="mb-3 flex items-center space-x-2">
+          <Activity className="h-5 w-5 text-indigo-300" />
+          <h2 className="text-sm font-bold uppercase tracking-[0.22em] text-indigo-300">Company Pulse / TL;DR</h2>
         </div>
-        <p className="text-xl font-medium leading-relaxed">
-          "Since your last login, the <strong className="text-blue-400">Hacker Team</strong> has shipped 2 landing page variations and reached <strong className="text-emerald-400">12% conversion</strong> on the v2 draft. <strong className="text-purple-400">Engineer / Builder</strong> resolved 3 core blocks. Token spend is within budget, with an <strong className="text-blue-400">8.2x ROI</strong> on lead generation."
+        <p className="relative text-xl font-medium leading-relaxed">
+          "Since your last login, the <strong className="text-indigo-300">Hacker Team</strong> has shipped 2 landing page variations and reached <strong className="text-emerald-400">12% conversion</strong> on the v2 draft. <strong className="text-violet-300">Engineer / Builder</strong> resolved 3 core blocks. Token spend is within budget, with an <strong className="text-indigo-300">8.2x ROI</strong> on lead generation."
         </p>
       </section>
 
-      {/* 2. Metric Badging */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <MetricCard title="Token ROI" value="8.42x" label="+12% from last week" icon={<TrendingUp className="w-4 h-4 text-emerald-500" />} />
-        <MetricCard title="Lead Velocity" value="24/day" label="All-time high" icon={<Target className="w-4 h-4 text-blue-500" />} />
-        <MetricCard title="Avg. Task Cost" value="/usr/bin/bash.12" label="Optimization active" icon={<DollarSign className="w-4 h-4 text-orange-500" />} />
-        <MetricCard title="Conf. Score" value="94%" label="Human level" icon={<CheckCircle2 className="w-4 h-4 text-emerald-500" />} />
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <MetricCard title="Token ROI" value="8.42x" label="+12% from last week" icon={<TrendingUp className="h-4 w-4 text-emerald-500" />} />
+        <MetricCard title="Lead Velocity" value="24/day" label="All-time high" icon={<Target className="h-4 w-4 text-blue-500" />} />
+        <MetricCard title="Avg. Task Cost" value="/usr/bin/bash.12" label="Optimization active" icon={<DollarSign className="h-4 w-4 text-orange-500" />} />
+        <MetricCard title="Conf. Score" value="94%" label="Human level" icon={<CheckCircle2 className="h-4 w-4 text-emerald-500" />} />
       </div>
 
-      {/* 3. Hacker Team Pulse Table */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">GTM Experiment Pulse</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {pulseMetrics.map((m) => (
-              <div key={m.id} className="flex items-center justify-between border-b pb-4 last:border-0 last:pb-0">
-                <div className="flex items-center gap-4">
-                  <div className="p-2 bg-slate-50 rounded-lg">
-                    <Activity className="w-4 h-4 text-slate-500" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold">{m.title}</h4>
-                    <p className="text-xs text-muted-foreground">{m.type}</p>
-                  </div>
+      <section className="dashboard-card p-6">
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold">GTM Experiment Pulse</h3>
+        </div>
+        <div className="space-y-4">
+          {pulseMetrics.map((m) => (
+            <div key={m.id} className="flex items-center justify-between border-b pb-4 last:border-0 last:pb-0">
+              <div className="flex items-center gap-4">
+                <div className="rounded-xl bg-indigo-50 p-2 text-indigo-600">
+                  <Activity className="h-4 w-4 text-slate-500" />
                 </div>
-                <div className="flex items-center gap-6">
-                   <div className="text-right">
-                    <p className="text-sm font-bold text-emerald-600">{m.results}</p>
-                    <p className="text-[10px] text-muted-foreground">Performance</p>
-                  </div>
-                  <Badge variant={m.status === 'ACTIVE' ? 'default' : 'secondary'}>{m.status}</Badge>
+                <div>
+                  <h4 className="text-sm font-bold">{m.title}</h4>
+                  <p className="text-xs text-muted-foreground">{m.type}</p>
                 </div>
               </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+              <div className="flex items-center gap-6">
+                <div className="text-right">
+                  <p className="text-sm font-bold text-emerald-600">{m.results}</p>
+                  <p className="text-[10px] text-muted-foreground">Performance</p>
+                </div>
+                <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${m.status === 'ACTIVE' ? 'bg-brand-gradient text-white shadow-glow' : 'bg-slate-100 text-slate-700'}`}>
+                  {m.status}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
 
-function MetricCard({ title, value, label, icon }: { title: string, value: string, label: string, icon: React.ReactNode }) {
+function MetricCard({ title, value, label, icon }: { title: string; value: string; label: string; icon: React.ReactNode }) {
   return (
-    <Card>
-      <CardContent className="pt-6">
-        <div className="flex items-start justify-between">
-          <div>
-            <p className="text-xs font-medium text-muted-foreground uppercase">{title}</p>
-            <h3 className="text-2xl font-bold mt-1">{value}</h3>
-            <p className="text-xs text-muted-foreground mt-1">{label}</p>
-          </div>
-          <div className="p-2 bg-slate-50 rounded-md">{icon}</div>
+    <section className="dashboard-card p-6">
+      <div className="flex items-start justify-between">
+        <div>
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">{title}</p>
+          <h3 className="mt-1 text-2xl font-bold">{value}</h3>
+          <p className="mt-1 text-xs text-muted-foreground">{label}</p>
         </div>
-      </CardContent>
-    </Card>
+        <div className="rounded-xl bg-indigo-50 p-2">{icon}</div>
+      </div>
+    </section>
   );
 }

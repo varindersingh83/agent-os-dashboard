@@ -1,8 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
-import { Mail, Briefcase, Tag, Calendar } from 'lucide-react';
+import { ArrowUpRight, Briefcase, Calendar, Mail } from 'lucide-react';
 
 const mockLeads = [
   { id: '1', name: 'John Doe', email: 'john@example.com', company: 'Acme Corp', status: 'NEW', createdAt: '2026-03-30' },
@@ -12,56 +9,67 @@ const mockLeads = [
 
 export default function LeadsPage() {
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold tracking-tight">Leads & CRM</h1>
-        <Badge variant="outline" className="px-3 py-1">24 Active Prospects</Badge>
+    <div className="space-y-6 p-6 sm:p-8 lg:p-10">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-extrabold tracking-[-0.03em]">Leads & CRM</h1>
+          <p className="mt-2 text-sm leading-6 text-slate-600">Track top prospects, contact signals, and funnel movement.</p>
+        </div>
+        <span className="rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
+          24 Active Prospects
+        </span>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Prospect Management (The Medusa Layer)</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Prospect</TableHead>
-                <TableHead>Contact</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Added</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
+      <section className="dashboard-card p-6">
+        <div className="mb-4">
+          <h2 className="text-lg font-semibold">Prospect Management (The Medusa Layer)</h2>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-slate-200">
+            <thead>
+              <tr className="text-left text-sm text-slate-500">
+                <th className="pb-3 pr-4 font-medium">Prospect</th>
+                <th className="pb-3 pr-4 font-medium">Contact</th>
+                <th className="pb-3 pr-4 font-medium">Status</th>
+                <th className="pb-3 font-medium">Added</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
               {mockLeads.map((lead) => (
-                <TableRow key={lead.id} className="hover:bg-slate-50 transition-colors cursor-pointer">
-                  <TableCell>
+                <tr key={lead.id} className="cursor-pointer transition-colors hover:bg-indigo-50/40">
+                  <td className="py-4 pr-4">
                     <div className="font-bold">{lead.name}</div>
-                    <div className="text-xs text-muted-foreground flex items-center mt-1">
-                      <Briefcase className="w-3 h-3 mr-1" /> {lead.company}
+                    <div className="mt-1 flex items-center text-xs text-muted-foreground">
+                      <Briefcase className="mr-1 h-3 w-3" />
+                      {lead.company}
                     </div>
-                  </TableCell>
-                  <TableCell>
+                  </td>
+                  <td className="py-4 pr-4">
                     <div className="flex items-center text-sm">
-                      <Mail className="w-3 h-3 mr-2 text-slate-400" /> {lead.email}
+                      <Mail className="mr-2 h-3 w-3 text-slate-400" />
+                      {lead.email}
                     </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant={lead.status === 'NEW' ? 'default' : 'secondary'}>
+                  </td>
+                  <td className="py-4 pr-4">
+                    <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${lead.status === 'NEW' ? 'bg-brand-gradient text-white shadow-glow' : 'bg-slate-100 text-slate-700'}`}>
                       {lead.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-xs text-muted-foreground">
-                    <div className="flex items-center">
-                      <Calendar className="w-3 h-3 mr-2" /> {lead.createdAt}
+                    </span>
+                  </td>
+                  <td className="py-4 text-xs text-muted-foreground">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="flex items-center">
+                        <Calendar className="mr-2 h-3 w-3" />
+                        {lead.createdAt}
+                      </span>
+                      <ArrowUpRight className="h-3.5 w-3.5 text-slate-300" />
                     </div>
-                  </TableCell>
-                </TableRow>
+                  </td>
+                </tr>
               ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
   );
 }

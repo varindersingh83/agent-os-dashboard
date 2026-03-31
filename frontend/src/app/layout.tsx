@@ -1,4 +1,5 @@
 import React from "react";
+import "./globals.css";
 
 export const metadata = {
   title: "Agent OS",
@@ -11,8 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
